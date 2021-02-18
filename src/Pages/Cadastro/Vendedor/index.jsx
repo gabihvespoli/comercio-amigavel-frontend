@@ -33,7 +33,7 @@ const CadastroVendedor = () => {
                 <div className="row">
                     <div className="col-md-12">
                         <h4 className="mb-3">Dados Pessoais</h4>
-                        <form className="needs-validation" onSubmit={enviarDados('http://localhost:3333/vendedor', obj, setDados)} noValidate>
+                        <form className="needs-validation" onSubmit={enviarDados('https://comercio-amigavel-backend.herokuapp.com/vendedor', obj, setDados)} noValidate>
                             <div className="row">
                                 <div className="col-md-6 mb-3">
                                     <label htmlFor="nome">Nome Completo</label>

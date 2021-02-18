@@ -24,7 +24,7 @@ const Login = (props) => {
     } else {
     }
     return(
-        <form className="form-signin text-center" onSubmit={enviarDados(`http://localhost:3333/login`,obj,setDados)}>
+        <form className="form-signin text-center" onSubmit={enviarDados(`https://comercio-amigavel-backend.herokuapp.com/login`,obj,setDados)}>
             <img  src="/images/logo-comercio-amigavel.png" alt="Logo" width={150} height={150} />
             <h1 className="h3 mb-3 font-weight-normal">{props.titulo}</h1>
             <label htmlFor="email" className="sr-only">Email address</label>
