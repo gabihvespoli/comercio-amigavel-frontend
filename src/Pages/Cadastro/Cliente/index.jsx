@@ -103,4 +103,4 @@ function CadastroCliente() {
     )
 }
 
-export default CadastroCliente
+export default CadastroCliente;
