@@ -33,7 +33,7 @@ const CadastroVendedor = () => {
                 <div className="row">
                     <div className="col-md-12">
                         <h4 className="mb-3">Dados Pessoais</h4>
-                        <form className="needs-validation" onSubmit={enviarDados(`${REACT_APP_API_URL}/vendedor`, obj, setDados)} noValidate>
+                        <form className="needs-validation" onSubmit={enviarDados(`${process.env.REACT_APP_API_URL}/vendedor`, obj, setDados)} noValidate>
                             <div className="row">
                                 <div className="col-md-6 mb-3">
                                     <label htmlFor="nome">Nome Completo</label>
