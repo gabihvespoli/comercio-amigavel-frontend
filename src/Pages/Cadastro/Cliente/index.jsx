@@ -1,6 +1,6 @@
 import React from 'react'
 
-import { enviarDados } from "../../../functions/database";
+import { enviarDados } from "../../../functions/bancoDeDados";
 
 function CadastroCliente() {
     //const [dados,setDados] = React.useEffect('');
