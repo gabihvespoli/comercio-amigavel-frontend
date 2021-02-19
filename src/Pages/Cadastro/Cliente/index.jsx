@@ -26,7 +26,7 @@ function CadastroCliente() {
                 <div className="row">
                     <div className="col-md-12">
                         <h4 className="mb-3">Dados Pessoais</h4>
-                        <form className="needs-validation" onSubmit={enviarDados('https://comercio-amigavel-backend.herokuapp.com/cliente', obj, setDados)} noValidate>
+                        <form className="needs-validation" onSubmit={enviarDados(`${REACT_APP_API_URL}/cliente`, obj, setDados)} noValidate>
                             <div className="row">
                                 <div className="col-md-6 mb-3">
                                     <label htmlFor="nome">Nome Completo</label>
