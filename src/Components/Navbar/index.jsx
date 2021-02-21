@@ -1,8 +1,6 @@
 import React, { useEffect }  from 'react';
 import { Link, useHistory } from 'react-router-dom';
 
-import { destroy } from "../../functions/auth";
-
 const Navbar = () => {
     const auth = localStorage.getItem('auth');
     const history = useHistory();
@@ -30,13 +28,13 @@ const Navbar = () => {
                 <div className="collapse navbar-collapse" id="navbarCollapse">
                     <ul className="navbar-nav mr-auto">
                     <li className="nav-item active">
-                        <Link className="nav-link" to="/anuncios">Anúncios<span className="sr-only">(current)</span></Link>
+                        <Link className="nav-link" to='/anuncios'>Anúncios<span className="sr-only">(current)</span></Link>
                     </li>
                     <li className="nav-item active">
                         <Link className="nav-link" to="/perfil">Perfil<span className="sr-only">(current)</span></Link>
                     </li>
                     </ul>
-                    <Link className="btn btn-outline-danger" to='/' role="button" onClick={destroy}> Sair </Link>
+                    <Link className="btn btn-outline-danger" to='/sair' role="button"> Sair </Link>
                 </div>
             </nav>
         );
@@ -50,7 +48,7 @@ const Navbar = () => {
                 <div className="collapse navbar-collapse" id="navbarCollapse">
                     <ul className="navbar-nav mr-auto">
                     <li className="nav-item active">
-                        <Link className="nav-link" to="./anuncios">Anúncios<span className="sr-only">(current)</span></Link>
+                        <Link className="nav-link" to="/anuncios">Anúncios<span className="sr-only">(current)</span></Link>
                     </li>
                     </ul>
                     <Link className="btn btn-outline-success" to='/entre' role="button">Entre</Link>

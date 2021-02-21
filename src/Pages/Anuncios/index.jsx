@@ -1,6 +1,18 @@
 import React from "react";
 
+import Card from '../../Components/Card'
+import {pegarDados} from '../../functions/database'
+
 function Anuncios() {
+  const [dados,setDados] = React.useState('')
+  React.useEffect(() => {
+    pegarDados(`${process.env.REACT_APP_API_URL}/anuncios`,setDados)
+    
+  }, [])
+
+  let anuncios = [...dados]
+  console.log(anuncios)
+
   return (
     <main role="main">
       <section className="jumbotron text-center">
@@ -11,10 +23,23 @@ function Anuncios() {
       <div className="album py-5 bg-light">
         <div className="container">
           <div className="row">
-            <form
-            >
-                {/* "<h1>Ainda não foram postados anuncios</h1>" */}
-            </form>
+              {anuncios.map((anuncio) => {
+                return  (
+                <div className="col-md-4">
+                  <Card
+                    img={`${process.env.REACT_APP_API_URL}/uploads/${anuncio.img}`}
+                    imgPerfil={`perfil-sem-foto.jpg`}
+                    negocio={'negocio'}
+                    descricao={anuncio.descricao}
+                    valor={anuncio.valor}
+                    opc={<br/>}
+                    doacao={anuncio.doacao}
+                    id_vendedor={anuncio.id_vendedor}
+                    redirecionar={true}
+                  />
+                </div>
+                );
+              })}
           </div>
         </div>
       </div>

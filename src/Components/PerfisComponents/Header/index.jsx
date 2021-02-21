@@ -9,14 +9,14 @@ const PerfilHeader = ({ img, editar, negocio, telefone, nota, ativa, classe }) =
             <div className="container-fluid">
                 <div className="row">
                     <div className="col-md-3 d-flex flex-column justify-content-between align-items-center">
-                        <img width={250} height={250} className="rounded-circle" src={`/images/perfil_vendedor/${img}`} alt="Foto de perfil" />
+                        <img width={250} height={250} className="rounded-circle" src={`${process.env.REACT_APP_API_URL}/uploads/${img}`} alt="Foto de perfil" />
                         {editar && <Link className="btn-lg btn-primary mt-3" id="foto" to="/editar/perfil/vendedor" role="buttom">Editar perfil</Link>}
                     </div>
                     <div className="col-md-9 d-flex flex-column justify-content-start align-items-start">
                         <h2 className="display-3">{negocio}</h2>
                         <StarRating
                             nota={nota}
-                            ativa={ativa}
+                            ratingStar={ativa}
                             classe={classe}
                         />
                         <div className="row ml-1 align-items-start">
