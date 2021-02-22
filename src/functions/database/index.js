@@ -16,5 +16,3 @@ export const pegarDados = (url,setData) => {
 }
 
 //headers: { "Content-Type": "application/json", "Accept": "application/json","Access-Control-Allow-Origin": "*", "Access-Control-Allow-Credentials": true, "Access-Control-Allow-Methods": "GET,PUT,POST,DELETE,OPTIONS", "Access-Control-Allow-Headers": "Origin,X-Requested-With,Content-Type,Accept,content-type,application/json" }
-
-

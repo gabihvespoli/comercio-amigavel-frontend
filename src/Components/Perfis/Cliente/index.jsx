@@ -20,7 +20,7 @@ const PerfilCliente = () => {
   const [dados,setDados] = React.useState('');
   const id = localStorage.getItem('id');
 
-  React.useEffect(() => { 
+  React.useEffect(() => {
     pegarDados(`${process.env.REACT_APP_API_URL}/cliente/${id}`,setCliente)
   },[dados,id])
 
@@ -33,10 +33,7 @@ const PerfilCliente = () => {
       [name]: value
     });
   }
-
-  console.log({cliente: values})
-  console.log({servidor: dados})
-
+  console.log(dados)
   return (
     <main id="topo" role="main">
       <div className="jumbotron">
@@ -106,14 +103,7 @@ const PerfilCliente = () => {
                 <div className="invalid-feedback">Digite nova senha</div>
               </div>              
               <br />
-              <a href={"#topo"}>
-                <button
-                  className="btn btn-primary btn-lg btn-block mb-5"
-                  type="submit"
-                >
-                  Salvar
-                </button>
-              </a>
+                <button className="btn btn-primary btn-lg btn-block mb-5" type="submit" > Salvar  </button>
             </form>
           </div>
         </div>

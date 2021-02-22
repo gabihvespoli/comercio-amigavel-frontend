@@ -9,38 +9,47 @@ import Card from "../../Card";
 const PerfilVendedor = () => {
   const initialState = () => {
     return {
-      descricao: '',
       valor: '',
-      arquivo: '',
-      linkArquivo: ''
+      descricao: '',
+      id_anuncio: '',
+      toggle: false,
+      put: false,
     }
   }
+
+  const initialImg = () => {
+    return {
+      img: '',
+      imgUrl: '',
+    }
+  }
+
   const [values,setValues] = React.useState(initialState);
-  const [toggle,setToggle] = React.useState(false);
-  const [data,setData] = React.useState('')
-  const [dados,setDados] = React.useState('')
-  const [put,setPut] = React.useState(false)
-  const [id,setId] = React.useState('')
+  const [img,setImg] = React.useState(initialImg);
+  const [dadosVendedor,setDadosVendedor] = React.useState(initialState)
+  const [dadosAnuncios,setDadosAnuncios] = React.useState(initialState)
   const id_vendedor = localStorage.getItem('id');
 
   React.useEffect(() => {
-    pegarDados(`${process.env.REACT_APP_API_URL}/vendedor/${id_vendedor}`,setData)
+    pegarDados(`${process.env.REACT_APP_API_URL}/vendedor/${id_vendedor}`,setDadosVendedor)
   }, [id_vendedor])
 
   React.useEffect(() => {
-    pegarDados(`${process.env.REACT_APP_API_URL}/anuncios`,setDados)
+    pegarDados(`${process.env.REACT_APP_API_URL}/anuncios`,setDadosAnuncios)
     
-  }, [id_vendedor]) 
+  }, []) 
 
-  let anuncios = [...dados]
+  //let anuncios = [...dados]
+
+  console.log(dadosAnuncios);
 
   return (
     <main role="main">
       <Header
-        img={data.img_perfil}
+        img={dadosVendedor.img_perfil}
         editar={true}
-        negocio={data.negocio === '' ? data.nome : data.negocio}
-        telefone={data.telefone}
+        negocio={dadosVendedor.negocio === '' ? dadosVendedor.nome : dadosVendedor.negocio}
+        telefone={dadosVendedor.telefone}
         nota={4.8}
         ratingStar={false}
         classe={''}
@@ -49,13 +58,12 @@ const PerfilVendedor = () => {
         <div className="row">
           <div className="col-md-4 d-flex justify-content-center align-items-center">
             <Card
-              put={put}
-              img={values.linkArquivo}
-              imgPerfil={data.img_perfil}
-              negocio={data.negocio ? data.negocio: data.nome}
+              img={img.imgUrl}
+              imgPerfil={dadosVendedor.img_perfil}
+              negocio={dadosVendedor.negocio ? dadosVendedor.negocio: dadosVendedor.nome}
               descricao={values.descricao}
               valor={values.valor}
-              doacao={toggle}
+              doacao={values.toggle}
               opc={'Aceita doação? (Marque a opção)'}
               redirecionar={false}
             />
@@ -63,13 +71,12 @@ const PerfilVendedor = () => {
           <div className="col-md-8">
             <h3 className="text-center" id="titulo">Crie seu anúncio</h3>
             <Form
-              id={id}
-              put={put}
               values={values}
-              toggle={toggle}
               setValues={setValues}
-              setToggle={setToggle}
+              img={img}
+              setImg={setImg}
               id_vendedor={id_vendedor}
+              //id_anuncio={anuncio.id}
             />
           </div>
         </div>
@@ -78,27 +85,25 @@ const PerfilVendedor = () => {
         <div className="row">
           <div className="col-md-12">
             <h2>Anúncios publicados</h2>
-              {anuncios.map((anuncio) => {
+              {/* {anuncios.map((anuncio) => {
                 if(id_vendedor === anuncio.id_vendedor.toString()){
                   return(
                     <ListaDeAnuncios
-                      put={put}
                       crud={true}
-                      setId={setId}
-                      setPut={setPut}
-                      id={anuncio.id}
+                      values={values}
                       key={anuncio.id}
-                      img={anuncio.img}
-                      valor={anuncio.valor}
+                      id_anuncio={anuncio.id}
+                      imgAnuncio={anuncio.img}
                       setValues={setValues}
-                      setToggle={setToggle}
+                      img={img}
+                      setImg={setImg}
+                      valor={anuncio.valor}
                       doacao={!!anuncio.doacao}
                       descricao={anuncio.descricao}
-                      //setSelectedFileUrl={setSelectedFileUrl}
                     />
                   );
                 } else return ''
-              })}
+              })} */}
           </div>
         </div>
       </div>
