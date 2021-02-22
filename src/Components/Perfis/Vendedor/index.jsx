@@ -1,7 +1,7 @@
 import React from "react";
 
 import { pegarDados } from "../../../functions/database";
-import ListaDeAnuncios from "../../PerfisComponents/ListaDeAnuncios"
+// import ListaDeAnuncios from "../../PerfisComponents/ListaDeAnuncios"
 import Header from "../../PerfisComponents/Header";
 import Form from "../../PerfisComponents/Form";
 import Card from "../../Card";
