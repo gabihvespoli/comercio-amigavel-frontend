@@ -4,12 +4,13 @@ import Card from '../../Components/Card'
 import {pegarDados} from '../../functions/database'
 
 function Anuncios() {
-  const [dados,setDados] = React.useState('')
+  const [dados,setDados] = React.useState([])
   React.useEffect(() => {
-    pegarDados(`${process.env.REACT_APP_API_URL}/anuncios`,setDados)
-    
+    pegarDados(`${process.env.REACT_APP_API_URL}/anuncios`,setDados)    
   }, [])
 
+
+  
   let anuncios = [...dados]
   console.log(anuncios)
 
@@ -28,8 +29,8 @@ function Anuncios() {
                 <div className="col-md-4">
                   <Card
                     img={`${process.env.REACT_APP_API_URL}/uploads/${anuncio.img}`}
-                    imgPerfil={`perfil-sem-foto.jpg`}
-                    negocio={'negocio'}
+                    imgPerfil={anuncio.img_perfil}
+                    negocio={anuncio.negocio ? anuncio.negocio : anuncio.nome}
                     descricao={anuncio.descricao}
                     valor={anuncio.valor}
                     opc={<br/>}

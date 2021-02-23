@@ -1,7 +1,7 @@
 import React from "react";
 
 import { pegarDados } from "../../../functions/database";
-// import ListaDeAnuncios from "../../PerfisComponents/ListaDeAnuncios"
+import ListaDeAnuncios from "../../PerfisComponents/ListaDeAnuncios"
 import Header from "../../PerfisComponents/Header";
 import Form from "../../PerfisComponents/Form";
 import Card from "../../Card";
@@ -26,30 +26,28 @@ const PerfilVendedor = () => {
 
   const [values,setValues] = React.useState(initialState);
   const [img,setImg] = React.useState(initialImg);
-  const [dadosVendedor,setDadosVendedor] = React.useState(initialState)
-  const [dadosAnuncios,setDadosAnuncios] = React.useState(initialState)
+  const [vendedor,setVendedor] = React.useState({});
+  const [anuncios,setAnuncios] = React.useState([]);
+  const [dataForm,setDataForm] = React.useState([]);
   const id_vendedor = localStorage.getItem('id');
 
   React.useEffect(() => {
-    pegarDados(`${process.env.REACT_APP_API_URL}/vendedor/${id_vendedor}`,setDadosVendedor)
+    pegarDados(`${process.env.REACT_APP_API_URL}/vendedor/${id_vendedor}`,setVendedor)
   }, [id_vendedor])
 
   React.useEffect(() => {
-    pegarDados(`${process.env.REACT_APP_API_URL}/anuncios`,setDadosAnuncios)
-    
-  }, []) 
+    pegarDados(`${process.env.REACT_APP_API_URL}/anuncios/${id_vendedor}`,setAnuncios)
+  }, [id_vendedor,dataForm])
 
-  //let anuncios = [...dados]
-
-  console.log(dadosAnuncios);
+  console.log(dataForm);
 
   return (
     <main role="main">
       <Header
-        img={dadosVendedor.img_perfil}
+        img={vendedor.img_perfil}
         editar={true}
-        negocio={dadosVendedor.negocio === '' ? dadosVendedor.nome : dadosVendedor.negocio}
-        telefone={dadosVendedor.telefone}
+        negocio={vendedor.negocio ? vendedor.negocio : vendedor.nome}
+        telefone={vendedor.telefone}
         nota={4.8}
         ratingStar={false}
         classe={''}
@@ -59,8 +57,8 @@ const PerfilVendedor = () => {
           <div className="col-md-4 d-flex justify-content-center align-items-center">
             <Card
               img={img.imgUrl}
-              imgPerfil={dadosVendedor.img_perfil}
-              negocio={dadosVendedor.negocio ? dadosVendedor.negocio: dadosVendedor.nome}
+              imgPerfil={vendedor.img_perfil}
+              negocio={vendedor.negocio ? vendedor.negocio : vendedor.nome}
               descricao={values.descricao}
               valor={values.valor}
               doacao={values.toggle}
@@ -76,6 +74,7 @@ const PerfilVendedor = () => {
               img={img}
               setImg={setImg}
               id_vendedor={id_vendedor}
+              setDataForm={setDataForm}
               //id_anuncio={anuncio.id}
             />
           </div>
@@ -85,25 +84,26 @@ const PerfilVendedor = () => {
         <div className="row">
           <div className="col-md-12">
             <h2>Anúncios publicados</h2>
-              {/* {anuncios.map((anuncio) => {
+              {anuncios.map(anuncio => {
                 if(id_vendedor === anuncio.id_vendedor.toString()){
                   return(
                     <ListaDeAnuncios
+                      key={anuncio.id}
+                      imgAnuncio={anuncio.img}
+                      descricao={anuncio.descricao}
+                      valor={anuncio.valor}
+                      doacao={!!anuncio.doacao}
                       crud={true}
                       values={values}
-                      key={anuncio.id}
-                      id_anuncio={anuncio.id}
-                      imgAnuncio={anuncio.img}
                       setValues={setValues}
                       img={img}
                       setImg={setImg}
-                      valor={anuncio.valor}
-                      doacao={!!anuncio.doacao}
-                      descricao={anuncio.descricao}
+                      id_anuncio={anuncio.id}
+                      setDataForm={setDataForm}
                     />
                   );
                 } else return ''
-              })} */}
+              })}
           </div>
         </div>
       </div>

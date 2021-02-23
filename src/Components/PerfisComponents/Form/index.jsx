@@ -4,11 +4,9 @@ import api from '../../../functions/services'
 import Dropzone from '../../Dropzone';
 import ToggleSwitch from "../../ToggleSwitch";
 
-const Form = ({ id_vendedor, values, setValues, img, setImg }) => {
-    // eslint-disable-next-line
+const Form = ({ id_vendedor, values, setValues, img, setImg, setDataForm }) => {    
     const atualizar = (event) => {
         const {name,value} = event.target
-
         setValues({
             ...values,
             [name]: value
@@ -26,17 +24,18 @@ const Form = ({ id_vendedor, values, setValues, img, setImg }) => {
 
         if(values.put){
             api.put(`/anuncios/${values.id_anuncio}`,data)
-            .then(response => setValues({...values,anuncioPublicado: response.data}))
-            .catch(error => setValues({...values,anuncioPublicado: error.response.data.errors}));
+            .then(response => setDataForm(response.data))
+            .catch(error => setDataForm(error.response.data.errors));
+            setValues({
+                ...values,
+                put: false
+            });
         } else{
             api.post('/anuncios',data)
-            .then(response => setValues({...values,anuncioPublicado: response.data}))
-            .catch(error => setValues({...values,anuncioPublicado: error.response.data.errors}));
+            .then(response => setDataForm(response.data))
+            .catch(error => setDataForm(error.response.data.errors));
         }
     }
-
-    console.log(values);
-
     return (
         <form className="needs-validation" onSubmit={enviarDados} noValidate>
             <div className="row">
@@ -91,7 +90,7 @@ const Form = ({ id_vendedor, values, setValues, img, setImg }) => {
                 </div>
             </div>
             <input type="hidden" className="form-control" id="idAnuncio"/>
-            <button className="btn btn-primary btn-lg btn-block" type="submit" id="butao">Anunciar</button>
+            <button className="btn btn-primary btn-lg btn-block" type="submit" id="butao">{values.put ? 'Salvar Anuncio' : 'Anunciar'}</button>
         </form>
     )
 }

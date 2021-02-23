@@ -122,7 +122,7 @@ const EditarPerfilVendedor = () => {
                                     name="endereco"
                                     placeholder=""
                                     value={values.endereco}
-                                    onChange={atualizar}                                    
+                                    onChange={atualizar}
                                 />
 
                                 <Input
