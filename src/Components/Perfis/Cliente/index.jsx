@@ -101,7 +101,7 @@ const PerfilCliente = () => {
                   placeholder=''
                 />
                 <div className="invalid-feedback">Digite nova senha</div>
-              </div>              
+              </div>
               <br />
                 <button className="btn btn-primary btn-lg btn-block mb-5" type="submit" > Salvar  </button>
             </form>
