@@ -12,6 +12,9 @@ const Form = ({ id_vendedor, values, setValues, img, setImg, setDataForm }) => {
             [name]: value
         });
     }
+
+    //npmconsole.log(img);
+
     const enviarDados = (e) => {
         e.preventDefault();
 
@@ -22,7 +25,8 @@ const Form = ({ id_vendedor, values, setValues, img, setImg, setDataForm }) => {
         data.append('doacao',values.toggle);
         data.append('img',img.img);
 
-        if(values.put){
+        if(values.put){  
+            data.append('key',img.key);        
             api.put(`/anuncios/${values.id_anuncio}`,data)
             .then(response => setDataForm(response.data))
             .catch(error => setDataForm(error.response.data.errors));
@@ -59,8 +63,8 @@ const Form = ({ id_vendedor, values, setValues, img, setImg, setDataForm }) => {
                         value={values.descricao}
                         onChange={atualizar} 
                         required 
-                        cols={30} 
-                        rows={4} 
+                        cols={30}
+                        rows={4}
                     />
                     <div className="invalid-feedback">Escreva a descrição</div>
                 </div>
