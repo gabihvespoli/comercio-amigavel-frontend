@@ -5,7 +5,7 @@ export const enviarDados = (url, form, setDados, method = "POST") => (
 
   fetch(url, {
     method: method,
-    headers: { 'Content-Type': 'application/json' },
+    headers: { 'Content-Type': 'application/json', 'Access-Control-Allow-Origin': '*' },
     body: JSON.stringify(form),
   })
     .then((response) => response.json())
