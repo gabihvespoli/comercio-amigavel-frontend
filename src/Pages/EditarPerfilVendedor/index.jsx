@@ -60,7 +60,7 @@ const EditarPerfilVendedor = () => {
         .then(response => setDados(response.data))
         .catch(error => setDados(error.response.data.errors));
     }
-
+    console.log(dados);
     return (
         <>
             <div className="container mt-5">
